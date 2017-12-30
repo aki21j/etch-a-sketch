@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Etch-a-Sketch</title>
+	<style type="text/css">
+		.container{
+			/*width: 50vw;*/
+			margin: 20px 25%;
+			border: 15px solid black;
+			border-radius: 20px;
+			padding: 10px;
+		}
+		.square {
+		    background: #369;
+		    /*width: 70px;*/
+		    height: 20px;
+		    display: inline-block;
+		    margin: 0 5px;
+		}
+		.btn{
+			margin: 10px 47%;
+    		width: 100px;
+    		padding: 5px;
+		}
+	</style>
+</head>
+<body>
+	<button class="btn">Reset Me</button>
+	<div class="container">
+	</div>
+
+
+	<script type="text/javascript">
+		const container = document.querySelector(".container");
+		container.style.width = "650px";
+		var containerWidth = container.style.width;
+		console.log(parseInt(containerWidth));
+		 
+		 drawGrid(10);
+		 function drawGrid(number){
+
+			for (var i = 0; i <number; i++) {
+				var newDiv = document.createElement("div");
+				newDiv.classList.add('square');
+				var squareWidth = parseInt(containerWidth)/parseInt(number);
+				squareWidth = squareWidth - 10;
+				newDiv.style.width = squareWidth+"px";
+				newDiv.style.height = squareWidth+"px";
+				// console.log(a);	
+
+				
+				container.appendChild(newDiv);
+
+				for (var j = 1; j <number; j++) {
+					var newDiv2 = document.createElement("div");
+					newDiv2.classList.add('square');
+					newDiv2.style.width = squareWidth+"px";
+					newDiv2.style.height = squareWidth+"px";
+
+					// console.log(i);
+					container.appendChild(newDiv2);
+					// console.log(newDiv.style.width);
+					
+				}
+				var lineBreak = document.createElement("br");
+				lineBreak.classList.add('breakIt');
+				container.appendChild(lineBreak);
+
+
+				
+			}
+			var squares = document.querySelectorAll(".square");
+
+			squares.forEach(square => {
+					square.addEventListener('mouseover',function(e){
+					// console.log(e.target);
+					e.target.style.background = 'firebrick';
+				});
+			});
+		 }
+
+
+		 var btn = document.querySelector(".btn");
+		 btn.addEventListener('click', enterValue );
+
+		 function enterValue(){
+		 		var userNumber = +prompt("Enter a number less than 20 and greater than 0!");
+		 		if(userNumber > 20 || userNumber <= 0 || userNumber === " ")
+		 			return enterValue();
+		 		else if(userNumber <= 20 || userNumber > 0){
+			 		clearGrid();
+			 		drawGrid(userNumber);
+		 		}
+			}
+
+		 function clearGrid(){
+		 	var allSquares = document.querySelectorAll(".square");
+		 	console.log(allSquares.length);
+		 	allSquares.forEach(square => {
+		 		container.removeChild(square);
+		 	});
+		 	var allBreaks = document.querySelectorAll(".breakIt");
+		 	console.log(allSquares.length);
+		 	allBreaks.forEach(breakIt => {
+		 		container.removeChild(breakIt);
+		 	});
+
+
+		 }
+
+
+
+
+	</script>
+
+</body>
+</html>
