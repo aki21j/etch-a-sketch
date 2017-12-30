@@ -46,9 +46,6 @@
 				squareWidth = squareWidth - 10;
 				newDiv.style.width = squareWidth+"px";
 				newDiv.style.height = squareWidth+"px";
-				// console.log(a);	
-
-				
 				container.appendChild(newDiv);
 
 				for (var j = 1; j <number; j++) {
@@ -56,10 +53,7 @@
 					newDiv2.classList.add('square');
 					newDiv2.style.width = squareWidth+"px";
 					newDiv2.style.height = squareWidth+"px";
-
-					// console.log(i);
 					container.appendChild(newDiv2);
-					// console.log(newDiv.style.width);
 					
 				}
 				var lineBreak = document.createElement("br");
@@ -74,7 +68,9 @@
 			squares.forEach(square => {
 					square.addEventListener('mouseover',function(e){
 					// console.log(e.target);
-					e.target.style.background = 'firebrick';
+					// e.target.style.background = 'firebrick';
+					let randomColor = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';;
+					e.target.style.backgroundColor = randomColor;
 				});
 			});
 		 }
